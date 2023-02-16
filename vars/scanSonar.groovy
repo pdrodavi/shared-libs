@@ -1,11 +1,11 @@
 def call() {
-  
+
   inputAnalysis = input([
-                        message: 'Analysis SonarQube?',
-                        parameters: [
-                            choice(name: 'Analysis', choices: ['Yes', 'No'], description: 'Run on specific analysis')
-                        ]
-                    ])
+    message: 'Analysis SonarQube?',
+    parameters: [
+      choice(name: 'Analysis', choices: ['Yes', 'No'], description: 'Run on specific analysis')
+    ]
+  ])
 
   if ("${inputAnalysis}" == 'Yes') {
     withSonarQubeEnv('sonarqube') {
