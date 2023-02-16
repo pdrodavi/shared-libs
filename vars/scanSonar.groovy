@@ -1,13 +1,13 @@
 def call() {
+  
+  inputAnalysis = input([
+                        message: 'Analysis SonarQube?',
+                        parameters: [
+                            choice(name: 'Analysis', choices: ['Yes', 'No'], description: 'Run on specific analysis')
+                        ]
+                    ])
 
-  input {
-    message "Analysis SonarQube?"
-    parameters {
-      choice(name: 'Analysis', choices: ['Yes', 'No'], description: 'Run on specific analysis')
-    }
-  }
-
-  if ("${Analysis}" == 'Yes') {
+  if ("${inputAnalysis}" == 'Yes') {
     withSonarQubeEnv('sonarqube') {
       echo env.WORKSPACE
       sh "mvn -B clean verify sonar:sonar"
