@@ -10,6 +10,6 @@ def call(){
     echo "Branch selecionada: ${inputBranch}"
     echo "Clonando repositório: https://gitlab.com/srvextechnology/app-job-deploy-push-registry.git"
 
-    git(branch: "${inputBranch}", credentialsId: 'GITLAB-USER-SRVEX', url: "https://gitlab.com/srvextechnology/app-job-deploy-push-registry.git")
+    git(branch: "${inputBranch}", credentialsId: 'gitlab-token', url: "https://gitlab.com/srvextechnology/app-job-deploy-push-registry.git")
 
 }
