@@ -1,22 +1,3 @@
 def call(){
-
-    inputRepo = input([
-        message: 'Input Repository',
-        parameters: [
-            string(name: 'Input Url Repository Git')
-        ]
-    ])
-    
-    inputBranch = input([
-        message: 'Input branch',
-        parameters: [
-            string(name: 'Input branch')
-        ]
-    ])
-
-    echo "Branch selecionada: ${inputBranch}"
-    echo "Clonando repositório: ${inputRepo}"
-
-    git(branch: "${inputBranch}", credentialsId: 'github-token', url: "${inputRepo}")
-
+    git(branch: "main", credentialsId: 'github-token', url: "https://github.com/pdrodavi/app-quarkus-job-deploy.git")
 }
