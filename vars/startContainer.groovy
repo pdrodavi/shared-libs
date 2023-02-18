@@ -1,4 +1,13 @@
 def call() {
-  sh "docker run -i --rm --network=bridge --restart=always --publish-all quarkus/first-crud-jvm"
+  try {
+    sh "docker container stop ${env.JOB_BASE_NAME}"
+    sh "docker container rm -f ${env.JOB_BASE_NAME}"
+  } catch (err) {
+    echo err.getMessage()
+  }
+
+  sh "docker container create --name=${env.JOB_BASE_NAME} --memory=256MB --memory-reservation=256MB --network=bridge --restart=always --publish-all ${env.JOB_BASE_NAME}"
+
+  sh "docker container start ${env.JOB_BASE_NAME}"
   cleanWs()
 }
