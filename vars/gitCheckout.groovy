@@ -1,5 +1,12 @@
 def call(){
 
+    inputRepo = input([
+        message: 'Input Repository',
+        parameters: [
+            string(name: 'Input Url Repository Git')
+        ]
+    ])
+    
     inputBranch = input([
         message: 'Input branch',
         parameters: [
@@ -8,8 +15,8 @@ def call(){
     ])
 
     echo "Branch selecionada: ${inputBranch}"
-    echo "Clonando repositório: https://github.com/pdrodavi/app-job-deploy-sb.git"
+    echo "Clonando repositório: ${inputRepo}"
 
-    git(branch: "${inputBranch}", credentialsId: 'github-token', url: "https://github.com/pdrodavi/app-job-deploy-sb.git")
+    git(branch: "${inputBranch}", credentialsId: 'github-token', url: "${inputRepo}")
 
 }
